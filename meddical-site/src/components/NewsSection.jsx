@@ -1,115 +1,94 @@
-import { useRef } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Autoplay } from "swiper/modules";
+
+// Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
 
 export default function NewsSection() {
-  const news = [
-    {
-      id: 1,
-      img: "/images/news1.svg",
-      title: "Breakthrough Surgery Saves Patient's Life",
-      date: "Mon • 05 Sep 2021",
-      author: "Admin",
-      views: 68,
-      likes: 86,
-    },
-    {
-      id: 2,
-      img: "/images/news1.svg",
-      title: "Hospital Introduces New MRI Technology",
-      date: "Wed • 15 Sep 2021",
-      author: "Medical Team",
-      views: 102,
-      likes: 142,
-    },
-    {
-      id: 3,
-      img: "/images/news1.svg",
-      title: "How We’re Improving Cardiovascular Care",
-      date: "Fri • 20 Sep 2021",
-      author: "Dr. Smith",
-      views: 88,
-      likes: 63,
-    },
-    {
-      id: 4,
-      img: "/images/news1.svg",
-      title: "New Child Care Unit Launched",
-      date: "Tue • 25 Sep 2021",
-      author: "Admin",
-      views: 74,
-      likes: 52,
-    },
-  ];
+  const [news, setNews] = useState([]);
 
-  const scrollRef = useRef(null);
-
-  const scroll = (direction) => {
-    if (!scrollRef.current) return;
-    const amount = direction === "left" ? -300 : 300;
-    scrollRef.current.scrollBy({ left: amount, behavior: "smooth" });
-  };
+  useEffect(() => {
+    fetch("http://127.0.0.1:5000/api/news")
+      .then((res) => res.json())
+      .then(setNews)
+      .catch((err) => console.error(err));
+  }, []);
 
   return (
-    <section className="w-full py-10 bg-white">
-      {/* Subtitle */}
-      <p className="text-center text-blue-600 tracking-wide font-semibold">
-        BETTER INFORMATION, BETTER HEALTH
-      </p>
+    <section className="w-full py-20 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-6">
 
-      {/* Title */}
-      <h2 className="text-center text-4xl font-bold text-[#1F2B6C] mt-2 mb-12">
-        News
-      </h2>
-
-      {/* Slider Wrapper */}
-      <div className="relative max-w-7xl mx-auto px-6">
-        
-        {/* Left Arrow */}
-        <button
-          onClick={() => scroll("left")}
-          className="hidden md:block absolute left-0 top-1/2 -translate-y-1/2 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700"
-        >
-          ❮
-        </button>
-
-        {/* Cards Container */}
-        <div
-          ref={scrollRef}
-          className="flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth"
-        >
-          {news.map((item) => (
-            <Link
-              to={`/news/${item.id}`}
-              key={item.id}
-              className="min-w-[280px] md:min-w-[320px] bg-white rounded-xl shadow-md hover:shadow-xl transition p-4 cursor-pointer"
-            >
-              <img src={item.img} className="w-full rounded-lg" />
-
-              <p className="text-gray-500 text-sm mt-3">
-                {item.date} • By {item.author}
-              </p>
-
-              <h3 className="font-semibold text-lg text-[#1F2B6C] mt-2">
-                {item.title}
-              </h3>
-
-              <div className="flex justify-between mt-3 text-gray-600 text-sm">
-                <span>👁 {item.views}</span>
-                <span>❤ {item.likes}</span>
-              </div>
-            </Link>
-          ))}
+        <div className="text-center mb-12">
+          <h5 className="text-blue-600 font-bold tracking-widest uppercase text-sm mb-2">
+            Stay Updated
+          </h5>
+          <h2 className="text-4xl font-bold text-[#1F2B6C]">
+            Health Articles & News
+          </h2>
         </div>
 
-        {/* Right Arrow */}
-        <button
-          onClick={() => scroll("right")}
-          className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700"
+        <Swiper
+          modules={[Pagination, Autoplay]}
+          spaceBetween={30}
+          pagination={{ clickable: true }}
+          autoplay={{ delay: 5000 }}
+          breakpoints={{
+            0: { slidesPerView: 1 },
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+          }}
+          className="pb-12"
         >
-          ❯
-        </button>
-      </div>
+          {news.map((n) => (
+            <SwiperSlide key={n.id}>
+              <Link to={`/news/${n.id}`} className="block group">
+                <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100">
+                  <div className="relative overflow-hidden h-52">
+                    <img
+                      src={n.image ? `http://127.0.0.1:5000/uploads/news/${n.image}` : "/images/news-placeholder.jpg"}
+                      alt={n.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                  </div>
 
+                  <div className="p-6">
+                    <div className="flex items-center gap-3 text-sm text-gray-500 mb-3">
+                      <span className="bg-blue-50 text-blue-600 px-3 py-1 rounded-full font-medium">
+                        Health
+                      </span>
+                      <span>{new Date(n.created_at).toLocaleDateString()}</span>
+                    </div>
+
+                    <h3 className="text-xl font-bold text-[#1F2B6C] group-hover:text-blue-600 transition-colors line-clamp-2">
+                      {n.title}
+                    </h3>
+
+                    <p className="text-gray-600 mt-3 text-sm line-clamp-3">
+                      {n.content?.replace(/<[^>]*>/g, '').substring(0, 100)}...
+                    </p>
+
+                    <div className="mt-6 flex items-center text-blue-600 font-bold gap-2">
+                      Read More
+                      <span className="group-hover:translate-x-1 transition-transform">→</span>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
+        <div className="text-center mt-10">
+          <Link to="/news">
+            <button className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-10 py-3 rounded-lg font-bold transition-all">
+              View All News
+            </button>
+          </Link>
+        </div>
+      </div>
     </section>
   );
 }

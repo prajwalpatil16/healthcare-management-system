@@ -11,7 +11,7 @@ export const specialtiesData = {
     ],
     doctors: [
       {
-        name: "Dr. Priya Mehta",
+        name: "Dr. Sarah Mitchell",
         role: "Senior Neurologist",
         img: "/images/doc1.svg",
       },
@@ -35,13 +35,13 @@ export const specialtiesData = {
     ],
     doctors: [
       {
-        name: "Dr. Rahul Verma",
+        name: "Dr. Priya Sharma",
         role: "Orthopedic Surgeon",
         img: "/images/doc3.svg",
       },
       {
-        name: "Dr. Sneha Kulkarni",
-        role: "Bone Specialist",
+        name: "Dr. Rahul Verma",
+        role: "Sports Injury Specialist",
         img: "/images/doc1.svg",
       },
     ],
@@ -59,8 +59,8 @@ export const specialtiesData = {
     ],
     doctors: [
       {
-        name: "Dr. Ranjit Singh",
-        role: "Oncologist",
+        name: "Dr. Emily Carter",
+        role: "Medical Oncologist",
         img: "/images/doc2.svg",
       },
     ],
