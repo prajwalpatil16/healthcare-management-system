@@ -114,12 +114,3 @@ Use these pre-configured accounts to explore the system (Password for all is ind
 - **Encrypted Passwords**: Industry-standard Bcrypt hashing.
 - **Input Sanitization**: Protection against common web vulnerabilities.
 
----
-
-## 👨‍💻 Development Team
-Developed with ❤️ for Advanced Healthcare Delivery. 
-
----
-
-# 📄 License
-This project is licensed under the **MIT License**.
