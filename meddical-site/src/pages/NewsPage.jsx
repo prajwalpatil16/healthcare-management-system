@@ -8,7 +8,7 @@ export default function NewsPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:5000/api/news/${id}`)
+    fetch(`http://127.0.0.1:5001/api/news/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setArticle(data);
@@ -28,7 +28,7 @@ export default function NewsPage() {
       {/* HERO IMAGE */}
       <div className="w-full h-[420px] overflow-hidden">
         <img
-          src={`http://127.0.0.1:5000/uploads/news/${article.image}`}
+          src={`http://127.0.0.1:5001/uploads/news/${article.image}`}
           alt={article.title}
           className="w-full h-full object-cover"
         />

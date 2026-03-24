@@ -8,7 +8,7 @@ export default function PatientPrescriptions() {
         const fetchPrescriptions = async () => {
             const token = localStorage.getItem("token");
             try {
-                const res = await fetch("http://127.0.0.1:5000/api/patient/prescriptions", {
+                const res = await fetch("http://127.0.0.1:5001/api/patient/prescriptions", {
                     headers: { "Authorization": `Bearer ${token}` }
                 });
                 const data = await res.json();

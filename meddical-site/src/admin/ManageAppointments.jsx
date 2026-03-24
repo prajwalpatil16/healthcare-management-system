@@ -21,7 +21,7 @@ export default function ManageAppointments() {
     try {
       setLoading(true);
       const res = await fetch(
-        `http://127.0.0.1:5000/api/admin/appointments?page=${page}&limit=${limit}&status=${status}`,
+        `http://127.0.0.1:5001/api/admin/appointments?page=${page}&limit=${limit}&status=${status}`,
         {
           headers: {
             "Authorization": `Bearer ${token}`
@@ -46,7 +46,7 @@ export default function ManageAppointments() {
   // ----------------------------------
   const approveAppointment = async (id) => {
     const token = localStorage.getItem("token");
-    const res = await fetch(`http://127.0.0.1:5000/api/admin/appointments/${id}`, {
+    const res = await fetch(`http://127.0.0.1:5001/api/admin/appointments/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -67,7 +67,7 @@ export default function ManageAppointments() {
 
     const token = localStorage.getItem("token");
     const res = await fetch(
-      "http://127.0.0.1:5000/api/admin/appointments/approve-all",
+      "http://127.0.0.1:5001/api/admin/appointments/approve-all",
       {
         method: "PUT",
         headers: {
@@ -87,7 +87,7 @@ export default function ManageAppointments() {
     if (!confirm("Delete this appointment record?")) return;
     const token = localStorage.getItem("token");
 
-    const res = await fetch(`http://127.0.0.1:5000/api/admin/appointments/${id}`, {
+    const res = await fetch(`http://127.0.0.1:5001/api/admin/appointments/${id}`, {
       method: "DELETE",
       headers: {
         "Authorization": `Bearer ${token}`

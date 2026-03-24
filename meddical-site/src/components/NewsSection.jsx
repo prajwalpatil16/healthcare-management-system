@@ -11,7 +11,7 @@ export default function NewsSection() {
   const [news, setNews] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/api/news")
+    fetch("http://127.0.0.1:5001/api/news")
       .then((res) => res.json())
       .then(setNews)
       .catch((err) => console.error(err));
@@ -48,7 +48,7 @@ export default function NewsSection() {
                 <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100">
                   <div className="relative overflow-hidden h-52">
                     <img
-                      src={n.image ? `http://127.0.0.1:5000/uploads/news/${n.image}` : "/images/news-placeholder.jpg"}
+                      src={n.image ? `http://127.0.0.1:5001/uploads/news/${n.image}` : "/images/news-placeholder.jpg"}
                       alt={n.title}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />

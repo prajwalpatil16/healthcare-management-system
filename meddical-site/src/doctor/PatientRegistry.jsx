@@ -9,7 +9,7 @@ export default function PatientRegistry() {
         const fetchPatients = async () => {
             const token = localStorage.getItem("token");
             try {
-                const res = await fetch("http://127.0.0.1:5000/api/doctor/patients", {
+                const res = await fetch("http://127.0.0.1:5001/api/doctor/patients", {
                     headers: { "Authorization": `Bearer ${token}` }
                 });
                 const data = await res.json();

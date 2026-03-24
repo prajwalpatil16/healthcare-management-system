@@ -16,7 +16,7 @@ export default function Doctors() {
   // Fetch doctors from backend
   useEffect(() => {
     setLoading(true);
-    fetch("http://127.0.0.1:5000/api/doctors")
+    fetch("http://127.0.0.1:5001/api/doctors")
       .then((res) => res.json())
       .then((data) => {
         setDoctors(data);
@@ -99,7 +99,7 @@ export default function Doctors() {
                           <img
                             src={
                               doc.photo
-                                ? `http://127.0.0.1:5000/uploads/doctors/${doc.photo}`
+                                ? `http://127.0.0.1:5001/uploads/doctors/${doc.photo}`
                                 : "/images/doctor-placeholder.jpg"
                             }
                             alt={doc.name}

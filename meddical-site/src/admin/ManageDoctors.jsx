@@ -25,7 +25,7 @@ export default function ManageDoctors() {
   const loadDoctors = async () => {
     const token = localStorage.getItem("token");
     try {
-      const res = await fetch("http://127.0.0.1:5000/api/admin/doctors", {
+      const res = await fetch("http://127.0.0.1:5001/api/admin/doctors", {
         headers: {
           "Authorization": `Bearer ${token}`
         }
@@ -87,8 +87,8 @@ export default function ManageDoctors() {
 
     const isEdit = !!editingDoctor;
     const url = isEdit
-      ? `http://127.0.0.1:5000/api/admin/doctors/${editingDoctor.id}`
-      : "http://127.0.0.1:5000/api/admin/doctors";
+      ? `http://127.0.0.1:5001/api/admin/doctors/${editingDoctor.id}`
+      : "http://127.0.0.1:5001/api/admin/doctors";
 
     const method = isEdit ? "PUT" : "POST";
 
@@ -117,7 +117,7 @@ export default function ManageDoctors() {
     if (!confirm("Are you sure you want to remove this medical professional?")) return;
     const token = localStorage.getItem("token");
 
-    const res = await fetch(`http://127.0.0.1:5000/api/admin/doctors/${id}`, {
+    const res = await fetch(`http://127.0.0.1:5001/api/admin/doctors/${id}`, {
       method: "DELETE",
       headers: {
         "Authorization": `Bearer ${token}`
@@ -155,7 +155,7 @@ export default function ManageDoctors() {
           <div key={doc.id} className="group bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 flex flex-col">
             <div className="relative h-64 overflow-hidden">
               <img
-                src={doc.photo ? `http://127.0.0.1:5000/uploads/doctors/${doc.photo}` : "/images/doctor-placeholder.jpg"}
+                src={doc.photo ? `http://127.0.0.1:5001/uploads/doctors/${doc.photo}` : "/images/doctor-placeholder.jpg"}
                 alt={doc.name}
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
@@ -287,7 +287,7 @@ export default function ManageDoctors() {
             <div className="text-center">
               <div className="w-56 h-72 mx-auto rounded-[40px] overflow-hidden shadow-2xl mb-8 -rotate-2">
                 <img
-                  src={`http://127.0.0.1:5000/uploads/doctors/${viewDoctor.photo}`}
+                  src={`http://127.0.0.1:5001/uploads/doctors/${viewDoctor.photo}`}
                   className="w-full h-full object-cover"
                   alt={viewDoctor.name}
                 />

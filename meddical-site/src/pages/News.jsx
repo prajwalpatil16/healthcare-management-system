@@ -9,7 +9,7 @@ export default function News() {
   // FETCH NEWS FROM BACKEND
   // -----------------------------
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/api/news")
+    fetch("http://127.0.0.1:5001/api/news")
       .then((res) => res.json())
       .then((data) => setNewsList(data))
       .catch((err) => console.error("News fetch error:", err));
@@ -42,7 +42,7 @@ export default function News() {
               {/* IMAGE */}
               {news.image && (
                 <img
-                  src={`http://127.0.0.1:5000/uploads/news/${news.image}`}
+                  src={`http://127.0.0.1:5001/uploads/news/${news.image}`}
                   alt={news.title}
                   className="w-full h-56 object-cover"
                 />

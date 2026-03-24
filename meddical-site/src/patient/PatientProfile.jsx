@@ -9,7 +9,7 @@ export default function PatientProfile() {
         const fetchProfile = async () => {
             const token = localStorage.getItem("token");
             try {
-                const res = await fetch("http://127.0.0.1:5000/api/patient/profile", {
+                const res = await fetch("http://127.0.0.1:5001/api/patient/profile", {
                     headers: { "Authorization": `Bearer ${token}` }
                 });
                 const data = await res.json();
@@ -28,7 +28,7 @@ export default function PatientProfile() {
         setSaving(true);
         const token = localStorage.getItem("token");
         try {
-            const res = await fetch("http://127.0.0.1:5000/api/patient/profile", {
+            const res = await fetch("http://127.0.0.1:5001/api/patient/profile", {
                 method: "PUT",
                 headers: {
                     "Authorization": `Bearer ${token}`,

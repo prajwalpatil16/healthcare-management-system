@@ -13,7 +13,7 @@ export default function PatientHome() {
         const fetchStats = async () => {
             const token = localStorage.getItem("token");
             try {
-                const res = await fetch("http://127.0.0.1:5000/api/patient/dashboard-stats", {
+                const res = await fetch("http://127.0.0.1:5001/api/patient/dashboard-stats", {
                     headers: { "Authorization": `Bearer ${token}` }
                 });
                 const data = await res.json();

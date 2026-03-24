@@ -15,7 +15,7 @@ export default function DoctorProfileManager() {
         const fetchProfile = async () => {
             const token = localStorage.getItem("token");
             try {
-                const res = await fetch("http://127.0.0.1:5000/api/doctor/profile", {
+                const res = await fetch("http://127.0.0.1:5001/api/doctor/profile", {
                     headers: { "Authorization": `Bearer ${token}` }
                 });
                 const data = await res.json();
@@ -52,7 +52,7 @@ export default function DoctorProfileManager() {
 
         const token = localStorage.getItem("token");
         try {
-            const res = await fetch("http://127.0.0.1:5000/api/doctor/profile", {
+            const res = await fetch("http://127.0.0.1:5001/api/doctor/profile", {
                 method: "PUT",
                 headers: { "Authorization": `Bearer ${token}` },
                 body: formData
@@ -123,7 +123,7 @@ export default function DoctorProfileManager() {
                     <div className="flex items-center gap-6">
                         <div className="w-24 h-24 rounded-3xl bg-gray-100 overflow-hidden border-4 border-white shadow-lg">
                             {profile.photo && !(profile.photo instanceof File) ? (
-                                <img src={`http://127.0.0.1:5000/uploads/doctors/${profile.photo}`} className="w-full h-full object-cover" alt="Profile" />
+                                <img src={`http://127.0.0.1:5001/uploads/doctors/${profile.photo}`} className="w-full h-full object-cover" alt="Profile" />
                             ) : (
                                 <div className="w-full h-full flex items-center justify-center text-3xl">👤</div>
                             )}

@@ -9,7 +9,7 @@ export default function ManageNews() {
 
   const loadNews = async () => {
     try {
-      const res = await fetch("http://127.0.0.1:5000/api/news");
+      const res = await fetch("http://127.0.0.1:5001/api/news");
       const data = await res.json();
       setNews(data);
     } catch (err) {
@@ -33,7 +33,7 @@ export default function ManageNews() {
     fd.append("author", form.author);
     if (image) fd.append("image", image);
 
-    const res = await fetch("http://127.0.0.1:5000/api/admin/news", {
+    const res = await fetch("http://127.0.0.1:5001/api/admin/news", {
       method: "POST",
       headers: {
         "Authorization": `Bearer ${token}`
@@ -55,7 +55,7 @@ export default function ManageNews() {
     if (!confirm("Are you sure you want to remove this news article?")) return;
     const token = localStorage.getItem("token");
 
-    const res = await fetch(`http://127.0.0.1:5000/api/admin/news/${id}`, {
+    const res = await fetch(`http://127.0.0.1:5001/api/admin/news/${id}`, {
       method: "DELETE",
       headers: {
         "Authorization": `Bearer ${token}`
@@ -91,7 +91,7 @@ export default function ManageNews() {
           <div key={n.id} className="group bg-white rounded-[40px] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 flex flex-col">
             <div className="relative h-48 overflow-hidden">
               <img
-                src={n.image ? `http://127.0.0.1:5000/uploads/news/${n.image}` : "/images/news-placeholder.jpg"}
+                src={n.image ? `http://127.0.0.1:5001/uploads/news/${n.image}` : "/images/news-placeholder.jpg"}
                 alt={n.title}
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />

@@ -10,7 +10,7 @@ export default function ClinicalRecords() {
         const fetchApts = async () => {
             const token = localStorage.getItem("token");
             try {
-                const res = await fetch("http://127.0.0.1:5000/api/doctor/appointments", {
+                const res = await fetch("http://127.0.0.1:5001/api/doctor/appointments", {
                     headers: { "Authorization": `Bearer ${token}` }
                 });
                 const data = await res.json();
@@ -29,7 +29,7 @@ export default function ClinicalRecords() {
         setSelectedApt(aptId);
         setRecord(null);
         try {
-            const res = await fetch(`http://127.0.0.1:5000/api/doctor/records/${aptId}`, {
+            const res = await fetch(`http://127.0.0.1:5001/api/doctor/records/${aptId}`, {
                 headers: { "Authorization": `Bearer ${token}` }
             });
             const data = await res.json();

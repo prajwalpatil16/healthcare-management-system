@@ -5,7 +5,7 @@ export default function DoctorsGrid() {
   const [doctors, setDoctors] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/api/doctors")
+    fetch("http://127.0.0.1:5001/api/doctors")
       .then((res) => res.json())
       .then((data) => setDoctors(data))
       .catch((err) => console.error(err));
@@ -32,7 +32,7 @@ export default function DoctorsGrid() {
             >
               <div className="relative overflow-hidden h-[340px]">
                 <img
-                  src={doc.photo ? `http://127.0.0.1:5000/uploads/doctors/${doc.photo}` : "/images/doctor-placeholder.jpg"}
+                  src={doc.photo ? `http://127.0.0.1:5001/uploads/doctors/${doc.photo}` : "/images/doctor-placeholder.jpg"}
                   alt={doc.name}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
